@@ -3,6 +3,7 @@ import { PercentButton } from "./components/PercentButton";
 import { CustomPercent } from "./components/CustomPercent";
 
 function App() {
+  const [bill, setBill] = useState<string>("");
   const [customPercent, setCustomPercent] = useState("");
   const [selectedPercent, setSelectedPercent] = useState<string | null>(null);
   const percents: string[] = ["5", "10", "15", "25", "50"];
@@ -22,6 +23,10 @@ function App() {
     if (e.target.value) {
       setSelectedPercent(null);
     }
+  };
+
+  const handleBillChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setBill(e.target.value);
   };
 
   return (
@@ -48,25 +53,33 @@ function App() {
             id="bill"
             className="inline-block w-full rounded bg-[#f3f8fb] p-2 px-4 pb-3 pl-10 text-right text-2xl font-bold text-[#00494D] placeholder:text-[#9EBBBD]"
             placeholder="0"
+            value={bill}
+            onChange={handleBillChange}
           />
         </div>
       </div>
 
-      <div className="grid grid-cols-2 gap-4 sm:grid-cols-3">
-        {percents.map((percent) => (
-          <PercentButton
-            key={percent}
-            percent={percent}
-            selectedRadio={selectedPercent}
-            handleSelectedPercentChange={handleSelectedPercentChange}
-          />
-        ))}
+      <fieldset>
+        <legend className="mb-4 inline-block font-bold text-[#5E7A7D]">
+          Select Tip %
+        </legend>
 
-        <CustomPercent
-          customPercent={customPercent}
-          handleCustomPercentChange={handleCustomPercentChange}
-        />
-      </div>
+        <div className="grid grid-cols-2 gap-4 sm:grid-cols-3">
+          {percents.map((percent) => (
+            <PercentButton
+              key={percent}
+              percent={percent}
+              selectedRadio={selectedPercent}
+              handleSelectedPercentChange={handleSelectedPercentChange}
+            />
+          ))}
+
+          <CustomPercent
+            customPercent={customPercent}
+            handleCustomPercentChange={handleCustomPercentChange}
+          />
+        </div>
+      </fieldset>
     </>
   );
 }
