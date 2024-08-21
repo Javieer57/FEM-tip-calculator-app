@@ -23,7 +23,7 @@ export function BillInput({ bill, handleBillChange }: BillInputProps) {
         <input
           type="text"
           inputMode="numeric"
-          pattern="[0-9]*"
+          pattern="^\d*\.?\d*$"
           name="bill"
           id="bill"
           className="inline-block w-full rounded bg-[#f3f8fb] p-2 px-4 pb-3 pl-10 text-right text-2xl font-bold text-[#00494D] placeholder:text-[#9EBBBD]"
