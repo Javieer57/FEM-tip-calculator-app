@@ -54,7 +54,7 @@ function App() {
           tter
         </h1>
 
-        <section className="grid gap-8 rounded-t-3xl bg-white p-8 md:grid-cols-2 md:gap-12 md:rounded-3xl">
+        <form className="grid gap-8 rounded-t-3xl bg-white p-8 md:grid-cols-2 md:gap-12 md:rounded-3xl">
           <div className="space-y-8">
             <BillInput bill={bill} handleBillChange={handleBillChange} />
 
@@ -87,7 +87,7 @@ function App() {
           </div>
 
           <Resume tipPerPerson={0} totalPerPerson={0} />
-        </section>
+        </form>
       </main>
     </div>
   );

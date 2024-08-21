@@ -30,9 +30,11 @@ export const Resume = ({ tipPerPerson, totalPerPerson }: ResumeProps) => {
         </tr>
       </table>
 
-      <button className="w-full rounded bg-[#26C0AB] p-2 text-center text-xl font-bold uppercase text-[#00494D]">
-        Reset
-      </button>
+      <input
+        className="w-full rounded bg-[#26C0AB] p-2 text-center text-xl font-bold uppercase text-[#00494D]"
+        type="reset"
+        value="Reset"
+      />
     </div>
   );
 };
