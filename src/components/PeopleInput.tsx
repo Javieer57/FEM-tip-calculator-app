@@ -25,10 +25,10 @@ export const PeopleInput = ({
           height={16}
         />
         <input
-          type="number"
+          type="text"
+          inputMode="numeric"
           pattern="[0-9]*"
           name="people"
-          min={0}
           id="people"
           className="inline-block w-full rounded bg-[#f3f8fb] p-2 px-4 pb-3 pl-10 text-right text-2xl font-bold text-[#00494D] placeholder:text-[#9EBBBD]"
           placeholder="0"
