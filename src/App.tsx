@@ -9,7 +9,7 @@ function App() {
   const [bill, setBill] = useState<string>("");
   const [people, setPeople] = useState<string>("");
   const [customPercent, setCustomPercent] = useState("");
-  const [selectedPercent, setSelectedPercent] = useState<string | null>(null);
+  const [selectedPercent, setSelectedPercent] = useState<string>("");
   const percents: string[] = ["5", "10", "15", "25", "50"];
 
   const handleSelectedPercentChange = (
@@ -26,7 +26,7 @@ function App() {
     setCustomPercent(e.target.value);
 
     if (e.target.value) {
-      setSelectedPercent(null);
+      setSelectedPercent("");
     }
   };
 
@@ -87,8 +87,9 @@ function App() {
           </div>
 
           <Resume
-            tipPerPerson={0}
-            totalPerPerson={parseFloat(bill) / parseInt(people)}
+            bill={bill}
+            people={people}
+            tipPercent={customPercent === "" ? selectedPercent : customPercent}
             onReset={() => {
               setBill("");
               setPeople("");
