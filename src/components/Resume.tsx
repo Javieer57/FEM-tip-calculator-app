@@ -25,7 +25,7 @@ export const Resume = ({ tipPerPerson, totalPerPerson }: ResumeProps) => {
             <span className="text-sm font-bold text-[#7F9C9F]">/ person</span>
           </td>
           <td className="break-all text-right text-3xl font-bold text-[#26C0AB] sm:text-5xl">
-            ${totalPerPerson.toFixed(2)}
+            ${isNaN(totalPerPerson) ? "0.00" : totalPerPerson.toFixed(2)}
           </td>
         </tr>
       </table>

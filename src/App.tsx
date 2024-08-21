@@ -86,7 +86,10 @@ function App() {
             />
           </div>
 
-          <Resume tipPerPerson={0} totalPerPerson={0} />
+          <Resume
+            tipPerPerson={0}
+            totalPerPerson={parseFloat(bill) / parseInt(people)}
+          />
         </form>
       </main>
     </div>
