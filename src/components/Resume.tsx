@@ -13,7 +13,7 @@ export const Resume = ({ tipPerPerson, totalPerPerson }: ResumeProps) => {
             <br />
             <span className="text-sm font-bold text-[#7F9C9F]">/ person</span>
           </td>
-          <td className="text-right text-3xl font-bold text-[#26C0AB] sm:text-5xl">
+          <td className="break-all text-right text-3xl font-bold text-[#26C0AB] sm:text-5xl">
             ${tipPerPerson.toFixed(2)}
           </td>
         </tr>
@@ -24,7 +24,7 @@ export const Resume = ({ tipPerPerson, totalPerPerson }: ResumeProps) => {
             <br />
             <span className="text-sm font-bold text-[#7F9C9F]">/ person</span>
           </td>
-          <td className="text-right text-3xl font-bold text-[#26C0AB] sm:text-5xl">
+          <td className="break-all text-right text-3xl font-bold text-[#26C0AB] sm:text-5xl">
             ${totalPerPerson.toFixed(2)}
           </td>
         </tr>
