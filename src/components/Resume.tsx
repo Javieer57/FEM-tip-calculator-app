@@ -1,9 +1,32 @@
+import { useEffect, useState } from "react";
+
 interface ResumeProps {
-  tipPerPerson: number;
-  totalPerPerson: number;
+  bill: string;
+  people: string;
+  tipPercent: string;
+  onReset: () => void;
 }
 
-export const Resume = ({ tipPerPerson, totalPerPerson }: ResumeProps) => {
+export const Resume = ({ bill, people, tipPercent, onReset }: ResumeProps) => {
+  const [tipPerPerson, setTipPerPerson] = useState<number>(0);
+  const [totalPerPerson, setTotalPerPerson] = useState<number>(0);
+
+  useEffect(() => {
+    if (bill === "" || people === "" || tipPercent === "") {
+      setTipPerPerson(0);
+      setTotalPerPerson(0);
+      return;
+    }
+
+    const parsedBill = parseFloat(bill);
+    const parsedPeople = parseInt(people);
+    const parsedTipPercent = parseInt(tipPercent);
+    const billTip = parsedBill * (parsedTipPercent / 100);
+
+    setTotalPerPerson(parsedBill / parsedPeople);
+    setTipPerPerson(billTip / parsedPeople);
+  }, [bill, people, tipPercent]);
+
   return (
     <div className="flex flex-col space-y-8 rounded-xl bg-[#00494D] p-5 pt-9 sm:justify-between sm:p-10">
       <table className="w-full">
@@ -30,7 +53,11 @@ export const Resume = ({ tipPerPerson, totalPerPerson }: ResumeProps) => {
         </tr>
       </table>
 
-      <button className="w-full rounded bg-[#26C0AB] p-2 text-center text-xl font-bold uppercase text-[#00494D]">
+      <button
+        type="reset"
+        className="w-full rounded bg-[#26C0AB] p-2 text-center text-xl font-bold uppercase text-[#00494D]"
+        onClick={onReset}
+      >
         Reset
       </button>
     </div>

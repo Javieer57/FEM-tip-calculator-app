@@ -21,11 +21,11 @@ export function BillInput({ bill, handleBillChange }: BillInputProps) {
           height={17}
         />
         <input
-          type="number"
-          pattern="[0-9]*"
+          type="text"
+          inputMode="numeric"
+          pattern="^\d*\.?\d*$"
           name="bill"
           id="bill"
-          min={0}
           className="inline-block w-full rounded bg-[#f3f8fb] p-2 px-4 pb-3 pl-10 text-right text-2xl font-bold text-[#00494D] placeholder:text-[#9EBBBD]"
           placeholder="0"
           value={bill}

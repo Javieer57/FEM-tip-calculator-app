@@ -9,7 +9,7 @@ function App() {
   const [bill, setBill] = useState<string>("");
   const [people, setPeople] = useState<string>("");
   const [customPercent, setCustomPercent] = useState("");
-  const [selectedPercent, setSelectedPercent] = useState<string | null>(null);
+  const [selectedPercent, setSelectedPercent] = useState<string>("");
   const percents: string[] = ["5", "10", "15", "25", "50"];
 
   const handleSelectedPercentChange = (
@@ -26,7 +26,7 @@ function App() {
     setCustomPercent(e.target.value);
 
     if (e.target.value) {
-      setSelectedPercent(null);
+      setSelectedPercent("");
     }
   };
 
@@ -54,7 +54,7 @@ function App() {
           tter
         </h1>
 
-        <section className="grid gap-8 rounded-t-3xl bg-white p-8 md:grid-cols-2 md:gap-12 md:rounded-3xl">
+        <form className="grid gap-8 rounded-t-3xl bg-white p-8 md:grid-cols-2 md:gap-12 md:rounded-3xl">
           <div className="space-y-8">
             <BillInput bill={bill} handleBillChange={handleBillChange} />
 
@@ -86,8 +86,17 @@ function App() {
             />
           </div>
 
-          <Resume tipPerPerson={0} totalPerPerson={0} />
-        </section>
+          <Resume
+            bill={bill}
+            people={people}
+            tipPercent={customPercent === "" ? selectedPercent : customPercent}
+            onReset={() => {
+              setBill("");
+              setPeople("");
+              setCustomPercent("");
+            }}
+          />
+        </form>
       </main>
     </div>
   );
