@@ -5,7 +5,7 @@ interface ResumeProps {
 
 export const Resume = ({ tipPerPerson, totalPerPerson }: ResumeProps) => {
   return (
-    <section className="flex flex-col space-y-8 rounded-xl bg-[#00494D] p-5 pt-9 sm:justify-between sm:p-10">
+    <div className="flex flex-col space-y-8 rounded-xl bg-[#00494D] p-5 pt-9 sm:justify-between sm:p-10">
       <table className="w-full">
         <tr className="border-b-[1.25rem] border-b-transparent sm:border-b-[2rem]">
           <td>
@@ -33,6 +33,6 @@ export const Resume = ({ tipPerPerson, totalPerPerson }: ResumeProps) => {
       <button className="w-full rounded bg-[#26C0AB] p-2 text-center text-xl font-bold uppercase text-[#00494D]">
         Reset
       </button>
-    </section>
+    </div>
   );
 };
