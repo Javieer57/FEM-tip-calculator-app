@@ -3,6 +3,7 @@ import { PercentButton } from "./components/PercentButton";
 import { CustomPercent } from "./components/CustomPercent";
 import { PeopleInput } from "./components/PeopleInput";
 import { BillInput } from "./components/BillInput";
+import { Resume } from "./components/Resume";
 
 function App() {
   const [bill, setBill] = useState<string>("");
@@ -40,33 +41,37 @@ function App() {
   };
 
   return (
-    <>
-      <BillInput bill={bill} handleBillChange={handleBillChange} />
+    <main className="grid gap-8 sm:grid-cols-2 sm:gap-12">
+      <section className="space-y-8">
+        <BillInput bill={bill} handleBillChange={handleBillChange} />
 
-      <fieldset>
-        <legend className="mb-4 inline-block font-bold text-[#5E7A7D]">
-          Select Tip %
-        </legend>
+        <fieldset>
+          <legend className="mb-4 inline-block font-bold text-[#5E7A7D]">
+            Select Tip %
+          </legend>
 
-        <div className="grid grid-cols-2 gap-4 sm:grid-cols-3">
-          {percents.map((percent) => (
-            <PercentButton
-              key={percent}
-              percent={percent}
-              selectedRadio={selectedPercent}
-              handleSelectedPercentChange={handleSelectedPercentChange}
+          <div className="grid grid-cols-2 gap-4 sm:grid-cols-3">
+            {percents.map((percent) => (
+              <PercentButton
+                key={percent}
+                percent={percent}
+                selectedRadio={selectedPercent}
+                handleSelectedPercentChange={handleSelectedPercentChange}
+              />
+            ))}
+
+            <CustomPercent
+              customPercent={customPercent}
+              handleCustomPercentChange={handleCustomPercentChange}
             />
-          ))}
+          </div>
+        </fieldset>
 
-          <CustomPercent
-            customPercent={customPercent}
-            handleCustomPercentChange={handleCustomPercentChange}
-          />
-        </div>
-      </fieldset>
+        <PeopleInput people={people} handlePeopleChange={handlePeopleChange} />
+      </section>
 
-      <PeopleInput people={people} handlePeopleChange={handlePeopleChange} />
-    </>
+      <Resume tipPerPerson={0} totalPerPerson={0} />
+    </main>
   );
 }
 
