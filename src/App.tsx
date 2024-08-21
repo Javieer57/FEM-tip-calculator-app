@@ -89,6 +89,11 @@ function App() {
           <Resume
             tipPerPerson={0}
             totalPerPerson={parseFloat(bill) / parseInt(people)}
+            onReset={() => {
+              setBill("");
+              setPeople("");
+              setCustomPercent("");
+            }}
           />
         </form>
       </main>

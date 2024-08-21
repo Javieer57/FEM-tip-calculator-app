@@ -1,9 +1,14 @@
 interface ResumeProps {
   tipPerPerson: number;
   totalPerPerson: number;
+  onReset: () => void;
 }
 
-export const Resume = ({ tipPerPerson, totalPerPerson }: ResumeProps) => {
+export const Resume = ({
+  tipPerPerson,
+  totalPerPerson,
+  onReset,
+}: ResumeProps) => {
   return (
     <div className="flex flex-col space-y-8 rounded-xl bg-[#00494D] p-5 pt-9 sm:justify-between sm:p-10">
       <table className="w-full">
@@ -30,11 +35,13 @@ export const Resume = ({ tipPerPerson, totalPerPerson }: ResumeProps) => {
         </tr>
       </table>
 
-      <input
-        className="w-full rounded bg-[#26C0AB] p-2 text-center text-xl font-bold uppercase text-[#00494D]"
+      <button
         type="reset"
-        value="Reset"
-      />
+        className="w-full rounded bg-[#26C0AB] p-2 text-center text-xl font-bold uppercase text-[#00494D]"
+        onClick={onReset}
+      >
+        Reset
+      </button>
     </div>
   );
 };
