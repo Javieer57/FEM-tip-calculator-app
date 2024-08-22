@@ -1,12 +1,14 @@
 interface PeopleInputProps {
   people: string;
-  handlePeopleChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  setPeople: (value: string) => void;
 }
 
-export const PeopleInput = ({
-  people,
-  handlePeopleChange,
-}: PeopleInputProps) => {
+export const PeopleInput = ({ people, setPeople }: PeopleInputProps) => {
+  const handlePeopleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    if (!e.target.validity.valid) return;
+    setPeople(e.target.value);
+  };
+
   return (
     <div>
       <label

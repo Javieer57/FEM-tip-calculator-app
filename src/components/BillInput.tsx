@@ -1,8 +1,13 @@
 interface BillInputProps {
   bill: string;
-  handleBillChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  setBill: (value: string) => void;
 }
-export function BillInput({ bill, handleBillChange }: BillInputProps) {
+export function BillInput({ bill, setBill }: BillInputProps) {
+  const handleBillChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    if (!e.target.validity.valid) return;
+    setBill(e.target.value);
+  };
+
   return (
     <div>
       <label
