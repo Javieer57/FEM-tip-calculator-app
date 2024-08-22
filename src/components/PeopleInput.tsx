@@ -35,7 +35,7 @@ export const PeopleInput = ({ people, setPeople }: PeopleInputProps) => {
           pattern="[0-9]*"
           name="people"
           id="people"
-          className={`text-dark-cyan-900 bg-dark-cyan-200 placeholder:text-dark-cyan-300 inline-block w-full rounded border-2 p-2 px-4 pb-3 pl-10 text-right text-2xl font-bold ${people === "0" ? "border-orange" : "border-transparent"}`}
+          className={`text-dark-cyan-900 bg-dark-cyan-200 placeholder:text-dark-cyan-300 inline-block w-full rounded border-2 p-2 px-4 pb-3 pl-10 text-right text-2xl font-bold outline-none ${people === "0" ? "border-orange" : "border-transparent focus:border-cyan-400"}`}
           placeholder="0"
           value={people}
           onChange={handlePeopleChange}

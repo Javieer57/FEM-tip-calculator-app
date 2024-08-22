@@ -72,7 +72,7 @@ export const Resume = ({ bill, people, tipPercent, onReset }: ResumeProps) => {
 
       <button
         type="reset"
-        className="text-dark-cyan-900 w-full rounded bg-cyan-400 p-2 text-center text-xl font-bold uppercase hover:bg-cyan-200"
+        className="text-dark-cyan-900 w-full rounded bg-cyan-400 p-2 text-center text-xl font-bold uppercase hover:bg-cyan-200 focus:bg-cyan-200"
         onClick={onReset}
       >
         Reset

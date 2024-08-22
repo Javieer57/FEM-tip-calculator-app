@@ -31,7 +31,7 @@ export function BillInput({ bill, setBill }: BillInputProps) {
           pattern="^\d*\.?\d*$"
           name="bill"
           id="bill"
-          className="text-dark-cyan-900 bg-dark-cyan-200 placeholder:text-dark-cyan-300 inline-block w-full rounded p-2 px-4 pb-3 pl-10 text-right text-2xl font-bold"
+          className="text-dark-cyan-900 bg-dark-cyan-200 placeholder:text-dark-cyan-300 inline-block w-full rounded border-2 border-transparent p-2 px-4 pb-3 pl-10 text-right text-2xl font-bold outline-none focus:border-cyan-400"
           placeholder="0"
           value={bill}
           onChange={handleBillChange}
