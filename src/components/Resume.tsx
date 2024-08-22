@@ -11,13 +11,12 @@ export const Resume = ({ bill, people, tipPercent, onReset }: ResumeProps) => {
   const [tipPerPerson, setTipPerPerson] = useState<number>(0);
   const [totalPerPerson, setTotalPerPerson] = useState<number>(0);
 
-  useEffect(() => {
-    if (bill === "" || people === "" || tipPercent === "") {
-      setTipPerPerson(0);
-      setTotalPerPerson(0);
-      return;
-    }
+  const cleanTotals = () => {
+    setTipPerPerson(0);
+    setTotalPerPerson(0);
+  };
 
+  const calculateTotals = () => {
     const parsedBill = parseFloat(bill);
     const parsedPeople = parseInt(people);
     const parsedTipPercent = parseInt(tipPercent);
@@ -25,6 +24,20 @@ export const Resume = ({ bill, people, tipPercent, onReset }: ResumeProps) => {
 
     setTotalPerPerson(parsedBill / parsedPeople);
     setTipPerPerson(billTip / parsedPeople);
+  };
+
+  useEffect(() => {
+    if (bill === "" || people === "" || tipPercent === "") {
+      cleanTotals();
+      return;
+    }
+
+    if (people === "0") {
+      cleanTotals();
+      return;
+    }
+
+    calculateTotals();
   }, [bill, people, tipPercent]);
 
   return (
