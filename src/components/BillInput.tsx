@@ -11,7 +11,7 @@ export function BillInput({ bill, setBill }: BillInputProps) {
   return (
     <div>
       <label
-        className="mb-2 inline-block font-bold text-[#5E7A7D]"
+        className="text-dark-cyan-700 mb-2 inline-block font-bold"
         htmlFor="bill"
       >
         Bill
@@ -31,7 +31,7 @@ export function BillInput({ bill, setBill }: BillInputProps) {
           pattern="^\d*\.?\d*$"
           name="bill"
           id="bill"
-          className="inline-block w-full rounded bg-[#f3f8fb] p-2 px-4 pb-3 pl-10 text-right text-2xl font-bold text-[#00494D] placeholder:text-[#9EBBBD]"
+          className="text-dark-cyan-900 bg-dark-cyan-200 placeholder:text-dark-cyan-300 inline-block w-full rounded p-2 px-4 pb-3 pl-10 text-right text-2xl font-bold"
           placeholder="0"
           value={bill}
           onChange={handleBillChange}

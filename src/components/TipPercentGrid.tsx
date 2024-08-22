@@ -36,7 +36,7 @@ export const TipPercentGrid = ({
 
   return (
     <fieldset>
-      <legend className="mb-4 inline-block font-bold text-[#5E7A7D]">
+      <legend className="text-dark-cyan-700 mb-4 inline-block font-bold">
         Select Tip %
       </legend>
 
