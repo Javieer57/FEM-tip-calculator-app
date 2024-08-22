@@ -12,11 +12,11 @@ export const PeopleInput = ({ people, setPeople }: PeopleInputProps) => {
   return (
     <div>
       <label
-        className="mb-2 flex justify-between gap-2 font-bold text-[#5E7A7D]"
+        className="text-dark-cyan-700 mb-2 flex justify-between gap-2 font-bold"
         htmlFor="bill"
       >
         Number of People
-        <span className="text-[#C57D71]" aria-live="polite">
+        <span className="text-orange" aria-live="polite">
           {people === "0" && "Can't be zero"}
         </span>
       </label>
@@ -35,7 +35,7 @@ export const PeopleInput = ({ people, setPeople }: PeopleInputProps) => {
           pattern="[0-9]*"
           name="people"
           id="people"
-          className={`inline-block w-full rounded border-2 bg-[#f3f8fb] p-2 px-4 pb-3 pl-10 text-right text-2xl font-bold text-[#00494D] placeholder:text-[#9EBBBD] ${people === "0" ? "border-[#C57D71]" : "border-transparent"}`}
+          className={`text-dark-cyan-900 bg-dark-cyan-200 placeholder:text-dark-cyan-300 inline-block w-full rounded border-2 p-2 px-4 pb-3 pl-10 text-right text-2xl font-bold ${people === "0" ? "border-orange" : "border-transparent"}`}
           placeholder="0"
           value={people}
           onChange={handlePeopleChange}

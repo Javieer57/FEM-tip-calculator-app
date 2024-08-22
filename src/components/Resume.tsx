@@ -41,15 +41,17 @@ export const Resume = ({ bill, people, tipPercent, onReset }: ResumeProps) => {
   }, [bill, people, tipPercent]);
 
   return (
-    <div className="flex flex-col space-y-8 rounded-xl bg-[#00494D] p-5 pt-9 sm:justify-between sm:p-10">
+    <div className="bg-dark-cyan-900 flex flex-col space-y-8 rounded-xl p-5 pt-9 sm:justify-between sm:p-10">
       <table className="w-full">
         <tr className="border-b-[1.25rem] border-b-transparent sm:border-b-[2rem]">
           <td>
             <span className="font-bold text-white">Tip Amount</span>
             <br />
-            <span className="text-sm font-bold text-[#7F9C9F]">/ person</span>
+            <span className="text-dark-cyan-600 text-sm font-bold">
+              / person
+            </span>
           </td>
-          <td className="break-all text-right text-3xl font-bold text-[#26C0AB] sm:text-5xl">
+          <td className="break-all text-right text-3xl font-bold text-cyan-400 sm:text-5xl">
             ${tipPerPerson.toFixed(2)}
           </td>
         </tr>
@@ -58,9 +60,11 @@ export const Resume = ({ bill, people, tipPercent, onReset }: ResumeProps) => {
           <td>
             <span className="font-bold text-white">Total</span>
             <br />
-            <span className="text-sm font-bold text-[#7F9C9F]">/ person</span>
+            <span className="text-dark-cyan-600 text-sm font-bold">
+              / person
+            </span>
           </td>
-          <td className="break-all text-right text-3xl font-bold text-[#26C0AB] sm:text-5xl">
+          <td className="break-all text-right text-3xl font-bold text-cyan-400 sm:text-5xl">
             ${totalPerPerson.toFixed(2)}
           </td>
         </tr>
@@ -68,7 +72,7 @@ export const Resume = ({ bill, people, tipPercent, onReset }: ResumeProps) => {
 
       <button
         type="reset"
-        className="w-full rounded bg-[#26C0AB] p-2 text-center text-xl font-bold uppercase text-[#00494D]"
+        className="text-dark-cyan-900 w-full rounded bg-cyan-400 p-2 text-center text-xl font-bold uppercase hover:bg-cyan-200"
         onClick={onReset}
       >
         Reset

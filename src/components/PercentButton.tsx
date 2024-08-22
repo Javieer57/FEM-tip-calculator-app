@@ -12,7 +12,7 @@ export const PercentButton = ({
   return (
     <label
       htmlFor={`id-${percent}`}
-      className="inline-block w-full rounded bg-[#00494D] p-2 pb-3 text-center text-2xl font-bold text-white hover:bg-[#9fe8df] hover:text-[#00494D] has-[:checked]:bg-[#26C2AD]"
+      className="bg-dark-cyan-900 hover:text-dark-cyan-900 inline-block w-full rounded p-2 pb-3 text-center text-2xl font-bold text-white hover:bg-cyan-200 has-[:checked]:bg-cyan-400"
     >
       <input
         type="radio"
@@ -23,7 +23,7 @@ export const PercentButton = ({
         checked={selectedRadio === percent}
         onChange={handleSelectedPercentChange}
       />
-      <span className="peer-checked:text-[#00494D]">{percent}%</span>
+      <span className="peer-checked:text-dark-cyan-900">{percent}%</span>
     </label>
   );
 };
