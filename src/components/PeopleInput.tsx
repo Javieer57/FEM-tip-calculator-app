@@ -10,10 +10,13 @@ export const PeopleInput = ({
   return (
     <div>
       <label
-        className="mb-2 inline-block font-bold text-[#5E7A7D]"
+        className="mb-2 flex justify-between gap-2 font-bold text-[#5E7A7D]"
         htmlFor="bill"
       >
         Number of People
+        <span className="text-[#C57D71]" aria-live="polite">
+          {people === "0" && "Can't be zero"}
+        </span>
       </label>
 
       <div className="relative">
@@ -30,7 +33,7 @@ export const PeopleInput = ({
           pattern="[0-9]*"
           name="people"
           id="people"
-          className="inline-block w-full rounded bg-[#f3f8fb] p-2 px-4 pb-3 pl-10 text-right text-2xl font-bold text-[#00494D] placeholder:text-[#9EBBBD]"
+          className={`inline-block w-full rounded border-2 bg-[#f3f8fb] p-2 px-4 pb-3 pl-10 text-right text-2xl font-bold text-[#00494D] placeholder:text-[#9EBBBD] ${people === "0" ? "border-[#C57D71]" : "border-transparent"}`}
           placeholder="0"
           value={people}
           onChange={handlePeopleChange}
