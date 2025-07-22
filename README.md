@@ -8,7 +8,7 @@
 - Solution: [Tip calculator app (React, Vite, Typescript, Tailwind)](https://www.frontendmentor.io/solutions/tip-calculator-app-react-vite-typescript-tailwind-AmF7guhBmS)
 - Site: [https://javieer57-tip-calculator.netlify.app/](https://javieer57-tip-calculator.netlify.app/)
 
-## Libraries
+## Build with
 
 - [TailwindCSS](https://tailwindcss.com/)
 - [React](https://es.react.dev/)
