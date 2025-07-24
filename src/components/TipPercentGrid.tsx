@@ -1,4 +1,3 @@
-import { percents } from "../types/percents";
 import { CustomPercent } from "./CustomPercent";
 import { PercentButton } from "./PercentButton";
 
@@ -15,7 +14,7 @@ export const TipPercentGrid = ({
   setCustomPercent,
   setSelectedPercent,
 }: TipPercentGriProps) => {
-  const percents: percents[] = ["5", "10", "15", "25", "50"];
+  const percents: string[] = ["5", "10", "15", "25", "50"];
 
   const handleSelectedPercentChange = (percent: string) => {
     setSelectedPercent(percent);

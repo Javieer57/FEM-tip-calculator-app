@@ -1,8 +1,6 @@
-import { percents } from "../types/percents";
-
 interface PercentButtonProps {
   /** Percent of the button */
-  percent: percents;
+  percent: string;
   /** This percent is the one selected */
   isSelected: boolean;
   /** Event to change current percent */

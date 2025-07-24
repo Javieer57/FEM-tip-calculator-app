@@ -17,6 +17,11 @@ const meta = {
   args: {
     ...ActionsData,
   },
+  argTypes: {
+    percent: {
+      control: "number",
+    },
+  },
 } satisfies Meta<typeof PercentButton>;
 
 export default meta;
