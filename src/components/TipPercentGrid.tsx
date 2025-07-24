@@ -1,3 +1,4 @@
+import { percents } from "../types/percents";
 import { CustomPercent } from "./CustomPercent";
 import { PercentButton } from "./PercentButton";
 
@@ -14,7 +15,7 @@ export const TipPercentGrid = ({
   setCustomPercent,
   setSelectedPercent,
 }: TipPercentGriProps) => {
-  const percents: string[] = ["5", "10", "15", "25", "50"];
+  const percents: percents[] = ["5", "10", "15", "25", "50"];
 
   const handleSelectedPercentChange = (
     e: React.ChangeEvent<HTMLInputElement>,
@@ -45,8 +46,8 @@ export const TipPercentGrid = ({
           <PercentButton
             key={percent}
             percent={percent}
-            selectedRadio={selectedPercent}
-            handleSelectedPercentChange={handleSelectedPercentChange}
+            isSelected={selectedPercent === percent}
+            onChange={handleSelectedPercentChange}
           />
         ))}
 

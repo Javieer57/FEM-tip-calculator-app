@@ -1,13 +1,18 @@
+import { percents } from "../types/percents";
+
 interface PercentButtonProps {
-  percent: string;
-  selectedRadio: string | null;
-  handleSelectedPercentChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  /** Percent of the button */
+  percent: percents;
+  /** This percent is the one selected */
+  isSelected: boolean;
+  /** Event to change current percent */
+  onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
 }
 
 export const PercentButton = ({
   percent,
-  selectedRadio,
-  handleSelectedPercentChange,
+  isSelected,
+  onChange,
 }: PercentButtonProps) => {
   return (
     <label
@@ -20,8 +25,8 @@ export const PercentButton = ({
         id={`id-${percent}`}
         className="peer sr-only"
         value={percent}
-        checked={selectedRadio === percent}
-        onChange={handleSelectedPercentChange}
+        checked={isSelected}
+        onChange={onChange}
       />
       <span className="peer-checked:text-dark-cyan-900">{percent}%</span>
     </label>
