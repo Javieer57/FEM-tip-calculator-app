@@ -15,6 +15,11 @@ const meta = {
   args: {
     ...ActionsData,
   },
+  argTypes: {
+    customPercent: {
+      type: "number",
+    },
+  },
 } satisfies Meta<typeof CustomPercent>;
 
 export default meta;
