@@ -17,10 +17,8 @@ export const TipPercentGrid = ({
 }: TipPercentGriProps) => {
   const percents: percents[] = ["5", "10", "15", "25", "50"];
 
-  const handleSelectedPercentChange = (
-    e: React.ChangeEvent<HTMLInputElement>,
-  ) => {
-    setSelectedPercent(e.target.value);
+  const handleSelectedPercentChange = (percent: string) => {
+    setSelectedPercent(percent);
     setCustomPercent("");
   };
 

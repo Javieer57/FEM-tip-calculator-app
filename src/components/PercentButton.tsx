@@ -6,7 +6,7 @@ interface PercentButtonProps {
   /** This percent is the one selected */
   isSelected: boolean;
   /** Event to change current percent */
-  onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  onChange: (value: string) => void;
 }
 
 export const PercentButton = ({
@@ -26,7 +26,7 @@ export const PercentButton = ({
         className="peer sr-only"
         value={percent}
         checked={isSelected}
-        onChange={onChange}
+        onChange={(e) => onChange(e.target.value)}
       />
       <span className="peer-checked:text-dark-cyan-900">{percent}%</span>
     </label>
