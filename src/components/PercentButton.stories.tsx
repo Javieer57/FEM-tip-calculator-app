@@ -19,7 +19,10 @@ const meta = {
   },
   argTypes: {
     percent: {
-      control: "number",
+      control: {
+        type: "number",
+        min: 0,
+      },
     },
   },
 } satisfies Meta<typeof PercentButton>;
