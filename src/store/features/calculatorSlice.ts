@@ -1,4 +1,5 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
+import { tryCalculate } from "../../utils/tryCalculate";
 
 export interface CalculatorState {
   bill: string;
@@ -8,6 +9,8 @@ export interface CalculatorState {
     custom: string;
     selected: string;
   };
+  tipAmount: number;
+  totalPerPerson: number;
 }
 
 const initialState: CalculatorState = {
@@ -18,6 +21,8 @@ const initialState: CalculatorState = {
     custom: "",
     selected: "",
   },
+  tipAmount: 0,
+  totalPerPerson: 0,
 };
 
 export const calculatorSlice = createSlice({
@@ -26,9 +31,11 @@ export const calculatorSlice = createSlice({
   reducers: {
     setBill: (state, action: PayloadAction<string>) => {
       state.bill = action.payload;
+      tryCalculate(state);
     },
     setPeople: (state, action: PayloadAction<string>) => {
       state.people = action.payload;
+      tryCalculate(state);
     },
     setCustomPercent: (state, action: PayloadAction<string>) => {
       state.tip = {
@@ -36,6 +43,7 @@ export const calculatorSlice = createSlice({
         selected: "",
         custom: action.payload,
       };
+      tryCalculate(state);
     },
     setPredefinedPercent: (state, action: PayloadAction<string>) => {
       state.tip = {
@@ -43,6 +51,7 @@ export const calculatorSlice = createSlice({
         selected: action.payload,
         custom: "",
       };
+      tryCalculate(state);
     },
   },
 });
