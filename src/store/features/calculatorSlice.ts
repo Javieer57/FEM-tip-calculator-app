@@ -1,23 +1,43 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
 export interface CalculatorState {
-  tipPercent: number;
+  tip: {
+    current: string;
+    custom: string;
+    selected: string;
+  };
 }
 
 const initialState: CalculatorState = {
-  tipPercent: 0,
+  tip: {
+    current: "",
+    custom: "",
+    selected: "",
+  },
 };
 
 export const calculatorSlice = createSlice({
   name: "calculator",
   initialState,
   reducers: {
-    setPercent: (state, action: PayloadAction<number>) => {
-      state.tipPercent = action.payload;
+    setCustomPercent: (state, action: PayloadAction<string>) => {
+      state.tip = {
+        current: action.payload,
+        selected: "",
+        custom: action.payload,
+      };
+    },
+    setPredefinedPercent: (state, action: PayloadAction<string>) => {
+      state.tip = {
+        current: action.payload,
+        selected: action.payload,
+        custom: "",
+      };
     },
   },
 });
 
-export const { setPercent } = calculatorSlice.actions;
+export const { setCustomPercent, setPredefinedPercent } =
+  calculatorSlice.actions;
 
 export default calculatorSlice.reducer;

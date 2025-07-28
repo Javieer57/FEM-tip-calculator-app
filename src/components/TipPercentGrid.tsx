@@ -1,3 +1,4 @@
+import { useAppDispatch, useAppSelector } from "../store/hooks";
 import { CustomPercent } from "./CustomPercent";
 import { PercentButton } from "./PercentButton";
 
@@ -14,6 +15,10 @@ export const TipPercentGrid = ({
   setCustomPercent,
   setSelectedPercent,
 }: TipPercentGriProps) => {
+  const count = useAppSelector((state) => state.calculator.tip.current);
+  console.log("🚀 ~ PercentButton ~ count:", count);
+  // const dispatch = useAppDispatch();
+
   const percents: string[] = ["5", "10", "15", "25", "50"];
 
   const handleSelectedPercentChange = (percent: string) => {

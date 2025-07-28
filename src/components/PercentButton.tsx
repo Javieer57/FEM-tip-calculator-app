@@ -1,3 +1,6 @@
+import { setPredefinedPercent } from "../store/features/calculatorSlice";
+import { useAppDispatch } from "../store/hooks";
+
 interface PercentButtonProps {
   /** Percent of the button */
   percent: string;
@@ -12,6 +15,8 @@ export const PercentButton = ({
   isSelected,
   onChange,
 }: PercentButtonProps) => {
+  const dispatch = useAppDispatch();
+
   return (
     <label
       htmlFor={`id-${percent}`}
@@ -24,7 +29,10 @@ export const PercentButton = ({
         className="sr-only"
         value={percent}
         checked={isSelected}
-        onChange={(e) => onChange(e.target.value)}
+        onChange={(e) => {
+          dispatch(setPredefinedPercent(e.target.value));
+          onChange(e.target.value);
+        }}
       />
       <span>{percent}%</span>
     </label>
