@@ -1,36 +1,8 @@
 import { CustomPercent } from "./CustomPercent";
 import { PercentButton } from "./PercentButton";
 
-interface TipPercentGriProps {
-  customPercent: string;
-  selectedPercent: string;
-  setCustomPercent: (value: string) => void;
-  setSelectedPercent: (value: string) => void;
-}
-
-export const TipPercentGrid = ({
-  selectedPercent,
-  customPercent,
-  setCustomPercent,
-  setSelectedPercent,
-}: TipPercentGriProps) => {
+export const TipPercentGrid = () => {
   const percents: string[] = ["5", "10", "15", "25", "50"];
-
-  const handleSelectedPercentChange = (percent: string) => {
-    setSelectedPercent(percent);
-    setCustomPercent("");
-  };
-
-  const handleCustomPercentChange = (
-    e: React.ChangeEvent<HTMLInputElement>,
-  ) => {
-    if (!e.target.validity.valid) return;
-    setCustomPercent(e.target.value);
-
-    if (e.target.value) {
-      setSelectedPercent("");
-    }
-  };
 
   return (
     <fieldset>
@@ -40,18 +12,10 @@ export const TipPercentGrid = ({
 
       <div className="grid grid-cols-2 gap-4 sm:grid-cols-3">
         {percents.map((percent) => (
-          <PercentButton
-            key={percent}
-            percent={percent}
-            isSelected={selectedPercent === percent}
-            onChange={handleSelectedPercentChange}
-          />
+          <PercentButton key={percent} percent={percent} />
         ))}
 
-        <CustomPercent
-          customPercent={customPercent}
-          handleCustomPercentChange={handleCustomPercentChange}
-        />
+        <CustomPercent />
       </div>
     </fieldset>
   );
