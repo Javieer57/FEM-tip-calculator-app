@@ -53,10 +53,16 @@ export const calculatorSlice = createSlice({
       };
       tryCalculate(state);
     },
+    resetCalculator: () => initialState,
   },
 });
 
-export const { setCustomPercent, setPredefinedPercent, setBill, setPeople } =
-  calculatorSlice.actions;
+export const {
+  setCustomPercent,
+  setPredefinedPercent,
+  setBill,
+  setPeople,
+  resetCalculator,
+} = calculatorSlice.actions;
 
 export default calculatorSlice.reducer;

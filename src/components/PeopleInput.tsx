@@ -1,18 +1,14 @@
 import IconPerson from "../assets/icon-person.svg";
-import { useAppDispatch } from "../store/hooks";
-import { setPeople as setPeopleAction } from "../store/features/calculatorSlice";
+import { useAppDispatch, useAppSelector } from "../store/hooks";
+import { setPeople } from "../store/features/calculatorSlice";
 
-interface PeopleInputProps {
-  people: string;
-  setPeople: (value: string) => void;
-}
-
-export const PeopleInput = ({ people, setPeople }: PeopleInputProps) => {
+export const PeopleInput = () => {
   const dispatch = useAppDispatch();
+  const people = useAppSelector((state) => state.calculator.people);
+
   const handlePeopleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (!e.target.validity.valid) return;
-    dispatch(setPeopleAction(e.target.value));
-    setPeople(e.target.value);
+    dispatch(setPeople(e.target.value));
   };
 
   return (

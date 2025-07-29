@@ -1,16 +1,13 @@
 import IconDollar from "../assets/icon-dollar.svg";
-import { useAppDispatch } from "../store/hooks";
+import { useAppDispatch, useAppSelector } from "../store/hooks";
 import { setBill as setBillAction } from "../store/features/calculatorSlice";
 
-interface BillInputProps {
-  bill: string;
-  setBill: (value: string) => void;
-}
-export function BillInput({ bill, setBill }: BillInputProps) {
+export function BillInput() {
+  const bill = useAppSelector((state) => state.calculator.bill);
   const dispatch = useAppDispatch();
+
   const handleBillChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (!e.target.validity.valid) return;
-    setBill(e.target.value);
     dispatch(setBillAction(e.target.value));
   };
 

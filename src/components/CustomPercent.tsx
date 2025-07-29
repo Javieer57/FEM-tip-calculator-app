@@ -1,16 +1,9 @@
 import { setCustomPercent } from "../store/features/calculatorSlice";
-import { useAppDispatch } from "../store/hooks";
+import { useAppDispatch, useAppSelector } from "../store/hooks";
 
-interface CustomPercentButtonProps {
-  customPercent: string;
-  handleCustomPercentChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
-}
-
-export const CustomPercent = ({
-  customPercent,
-  handleCustomPercentChange,
-}: CustomPercentButtonProps) => {
+export const CustomPercent = () => {
   const dispatch = useAppDispatch();
+  const customPercent = useAppSelector((state) => state.calculator.tip.custom);
 
   return (
     <div>
@@ -28,7 +21,6 @@ export const CustomPercent = ({
           if (!e.target.validity.valid) return;
 
           dispatch(setCustomPercent(e.target.value));
-          handleCustomPercentChange(e);
         }}
       />
     </div>
