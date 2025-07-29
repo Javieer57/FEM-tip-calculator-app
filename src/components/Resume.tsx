@@ -1,44 +1,11 @@
-import { useEffect, useState } from "react";
+import { resetCalculator } from "../store/features/calculatorSlice";
+import { useAppDispatch, useAppSelector } from "../store/hooks";
 
-interface ResumeProps {
-  bill: string;
-  people: string;
-  tipPercent: string;
-  onReset: () => void;
-}
-
-export const Resume = ({ bill, people, tipPercent, onReset }: ResumeProps) => {
-  const [tipPerPerson, setTipPerPerson] = useState<number>(0);
-  const [totalPerPerson, setTotalPerPerson] = useState<number>(0);
-
-  const cleanTotals = () => {
-    setTipPerPerson(0);
-    setTotalPerPerson(0);
-  };
-
-  const calculateTotals = () => {
-    const parsedBill = parseFloat(bill);
-    const parsedPeople = parseInt(people);
-    const parsedTipPercent = parseInt(tipPercent);
-    const billTip = parsedBill * (parsedTipPercent / 100);
-
-    setTotalPerPerson(parsedBill / parsedPeople);
-    setTipPerPerson(billTip / parsedPeople);
-  };
-
-  useEffect(() => {
-    if (bill === "" || people === "" || tipPercent === "") {
-      cleanTotals();
-      return;
-    }
-
-    if (people === "0") {
-      cleanTotals();
-      return;
-    }
-
-    calculateTotals();
-  }, [bill, people, tipPercent]);
+export const Resume = () => {
+  const dispatch = useAppDispatch();
+  const { tipAmount, totalPerPerson } = useAppSelector(
+    (state) => state.calculator,
+  );
 
   return (
     <div className="bg-dark-cyan-900 flex flex-col space-y-8 rounded-xl p-5 pt-9 sm:justify-between sm:p-10">
@@ -51,8 +18,8 @@ export const Resume = ({ bill, people, tipPercent, onReset }: ResumeProps) => {
               / person
             </span>
           </td>
-          <td className="break-all text-right text-3xl font-bold text-cyan-400 sm:text-5xl">
-            ${tipPerPerson.toFixed(2)}
+          <td className="text-right text-3xl font-bold break-all text-cyan-400 sm:text-5xl">
+            ${tipAmount.toFixed(2)}
           </td>
         </tr>
 
@@ -64,7 +31,7 @@ export const Resume = ({ bill, people, tipPercent, onReset }: ResumeProps) => {
               / person
             </span>
           </td>
-          <td className="break-all text-right text-3xl font-bold text-cyan-400 sm:text-5xl">
+          <td className="text-right text-3xl font-bold break-all text-cyan-400 sm:text-5xl">
             ${totalPerPerson.toFixed(2)}
           </td>
         </tr>
@@ -73,7 +40,7 @@ export const Resume = ({ bill, people, tipPercent, onReset }: ResumeProps) => {
       <button
         type="reset"
         className="text-dark-cyan-900 w-full rounded-sm bg-cyan-400 p-2 text-center text-xl font-bold uppercase hover:bg-cyan-200 focus:bg-cyan-200"
-        onClick={onReset}
+        onClick={() => dispatch(resetCalculator())}
       >
         Reset
       </button>
