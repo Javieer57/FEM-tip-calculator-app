@@ -13,7 +13,7 @@ export interface CalculatorState {
   totalPerPerson: number;
 }
 
-const initialState: CalculatorState = {
+export const initialState: CalculatorState = {
   bill: "",
   people: "",
   tip: {
