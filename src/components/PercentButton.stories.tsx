@@ -1,40 +1,44 @@
 import type { Meta, StoryObj } from "@storybook/react";
 
+import { PercentButton } from "./PercentButton";
+import { Provider } from "react-redux";
+import { createMockStore } from "../store/storeMock";
+import { initialState } from "../store/features/calculatorSlice";
 import { fn } from "storybook/test";
 
-import { PercentButton } from "./PercentButton";
-
 export const ActionsData = {
-  onChange: fn(),
+  onSelectPercent: fn(),
 };
+
+const store = createMockStore({ ...initialState });
 
 const meta = {
   component: PercentButton,
   title: "PercentButton",
   tags: ["autodocs"],
-  //👇 Our exports that end in "Data" are not stories.
   excludeStories: /.*Data$/,
   args: {
     ...ActionsData,
   },
   argTypes: {
     percent: {
-      control: {
-        type: "number",
-        min: 0,
-      },
+      control: { min: 0 },
     },
   },
+  decorators: [
+    (Story) => (
+      <Provider store={store}>
+        <Story />
+      </Provider>
+    ),
+  ],
 } satisfies Meta<typeof PercentButton>;
 
 export default meta;
 type Story = StoryObj<typeof meta>;
 
 export const Default: Story = {
-  args: {
-    percent: "5",
-    isSelected: false,
-  },
+  args: { percent: 5, isSelected: false },
 };
 
 export const Selected: Story = {
