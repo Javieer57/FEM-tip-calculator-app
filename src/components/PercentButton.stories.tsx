@@ -43,7 +43,7 @@ export const Default: Story = {
 
 export const Selected: Story = {
   args: {
-    percent: 5,
+    ...Default.args,
     isSelected: true,
   },
 };
