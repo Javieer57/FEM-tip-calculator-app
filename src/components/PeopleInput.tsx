@@ -1,6 +1,7 @@
 import IconPerson from "../assets/icon-person.svg";
 import { useAppDispatch, useAppSelector } from "../store/hooks";
 import { setPeople } from "../store/features/calculatorSlice";
+import { removeLeadingZeros } from "../utils/removeLeadingZeros";
 
 export const PeopleInput = () => {
   const dispatch = useAppDispatch();
@@ -8,14 +9,16 @@ export const PeopleInput = () => {
 
   const handlePeopleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (!e.target.validity.valid) return;
-    dispatch(setPeople(e.target.value));
+    const value = e.target.value;
+
+    dispatch(setPeople(value === "" ? "" : removeLeadingZeros(value)));
   };
 
   return (
-    <div>
+    <div className="space-y-2">
       <label
-        className="text-dark-cyan-700 mb-2 flex justify-between gap-2 font-bold"
-        htmlFor="bill"
+        className="text-dark-cyan-700 flex flex-col justify-between gap-2 font-bold sm:flex-row"
+        htmlFor="people"
       >
         Number of People
         <span className="text-orange" aria-live="polite">
