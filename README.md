@@ -14,3 +14,5 @@
 - [React](https://es.react.dev/)
 - [Vite](https://es.react.dev/)
 - [Redux Toolkit](https://redux-toolkit.js.org/)
+- Semantic HTML
+- Keyboard navigation

@@ -5,7 +5,7 @@ export const calculateValues = (
 ) => {
   const billAmount = parseFloat(bill);
   const peopleCount = parseInt(people);
-  const tip = parseFloat(tipPercent);
+  const tip = parseInt(tipPercent);
 
   if (
     isNaN(billAmount) ||
@@ -19,7 +19,7 @@ export const calculateValues = (
   }
 
   const tipAmount = (billAmount * (tip / 100)) / peopleCount;
-  const totalPerPerson = billAmount / peopleCount;
+  const totalPerPerson = billAmount / peopleCount + tipAmount;
 
   return {
     tipAmount: parseFloat(tipAmount.toFixed(2)),
