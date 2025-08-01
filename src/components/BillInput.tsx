@@ -22,7 +22,7 @@ export function BillInput() {
 
       <div className="relative">
         <img
-          className="absolute top-1/2 left-4 h-4.25 w-2.75 -translate-y-1/2"
+          className="pointer-events-none absolute top-1/2 left-4 h-4.25 w-2.75 -translate-y-1/2 select-none"
           src={IconDollar}
           alt=""
           width={11}

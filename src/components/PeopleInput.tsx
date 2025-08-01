@@ -25,7 +25,7 @@ export const PeopleInput = () => {
 
       <div className="relative">
         <img
-          className="absolute top-1/2 left-4 h-4 w-3.25 -translate-y-1/2"
+          className="pointer-events-none absolute top-1/2 left-4 h-4 w-3.25 -translate-y-1/2 select-none"
           src={IconPerson}
           alt=""
           width={13}
