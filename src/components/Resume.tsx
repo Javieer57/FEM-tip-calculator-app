@@ -41,7 +41,8 @@ export const Resume = () => {
 
       <button
         type="reset"
-        className="text-dark-cyan-900 w-full rounded-sm bg-cyan-400 p-2 text-center text-xl font-bold uppercase outline-hidden hover:bg-cyan-200 focus-visible:bg-cyan-200"
+        disabled={totalPerPerson === 0}
+        className="text-dark-cyan-900 w-full rounded-sm bg-cyan-400 p-2 text-center text-xl font-bold uppercase outline-hidden hover:bg-cyan-200 focus-visible:bg-cyan-200 disabled:opacity-30"
         onClick={() => dispatch(resetCalculator())}
       >
         Reset
