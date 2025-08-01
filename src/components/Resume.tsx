@@ -39,7 +39,7 @@ export const Resume = () => {
 
       <button
         type="reset"
-        className="text-dark-cyan-900 w-full rounded-sm bg-cyan-400 p-2 text-center text-xl font-bold uppercase hover:bg-cyan-200 focus:bg-cyan-200"
+        className="text-dark-cyan-900 w-full rounded-sm bg-cyan-400 p-2 text-center text-xl font-bold uppercase outline-hidden hover:bg-cyan-200 focus-visible:bg-cyan-200"
         onClick={() => dispatch(resetCalculator())}
       >
         Reset
