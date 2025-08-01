@@ -1,9 +1,17 @@
 import { setCustomPercent } from "../store/features/calculatorSlice";
 import { useAppDispatch, useAppSelector } from "../store/hooks";
+import { removeLeadingZeros } from "../utils/removeLeadingZeros";
 
 export const CustomPercent = () => {
   const dispatch = useAppDispatch();
   const customPercent = useAppSelector((state) => state.calculator.tip.custom);
+
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    if (!e.target.validity.valid) return;
+    const value = e.target.value;
+
+    dispatch(setCustomPercent(value === "" ? "" : removeLeadingZeros(value)));
+  };
 
   return (
     <label htmlFor="custom-percent">
@@ -17,11 +25,7 @@ export const CustomPercent = () => {
         id="custom-percent"
         placeholder="Custom"
         value={customPercent}
-        onChange={(e) => {
-          if (!e.target.validity.valid) return;
-
-          dispatch(setCustomPercent(e.target.value));
-        }}
+        onChange={handleChange}
       />
     </label>
   );
