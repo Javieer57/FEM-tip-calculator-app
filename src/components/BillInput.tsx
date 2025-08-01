@@ -1,20 +1,23 @@
 import IconDollar from "../assets/icon-dollar.svg";
 import { useAppDispatch, useAppSelector } from "../store/hooks";
 import { setBill as setBillAction } from "../store/features/calculatorSlice";
+import { removeLeadingZeros } from "../utils/removeLeadingZeros";
 
-export function BillInput() {
+export const BillInput = () => {
   const bill = useAppSelector((state) => state.calculator.bill);
   const dispatch = useAppDispatch();
 
-  const handleBillChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (!e.target.validity.valid) return;
-    dispatch(setBillAction(e.target.value));
+    const value = e.target.value;
+
+    dispatch(setBillAction(value === "" ? "" : removeLeadingZeros(value)));
   };
 
   return (
-    <div>
+    <div className="space-y-2">
       <label
-        className="text-dark-cyan-700 mb-2 inline-block font-bold"
+        className="text-dark-cyan-700 inline-block font-bold"
         htmlFor="bill"
       >
         Bill
@@ -37,9 +40,9 @@ export function BillInput() {
           className="bg-dark-cyan-200 text-dark-cyan-900 placeholder:text-dark-cyan-300 inline-block w-full rounded-sm border-2 border-transparent p-2 px-4 pb-3 pl-10 text-right text-2xl font-bold outline-hidden focus:border-cyan-400"
           placeholder="0"
           value={bill}
-          onChange={handleBillChange}
+          onChange={handleChange}
         />
       </div>
     </div>
   );
-}
+};
