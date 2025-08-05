@@ -66,4 +66,4 @@ Most fields use strings to simplify handling the calculator inputs, since number
 ## Author
 
 - Frontend Mentor - [@Javieer57](https://www.frontendmentor.io/profile/Javieer57)
-- Frontend Mentor - [@e_javieer](https://codepen.io/e_javieer)
+- Codepen - [@e_javieer](https://codepen.io/e_javieer)
