@@ -23,7 +23,8 @@ Users should be able to:
 
 ## Build with
 
-- [Vite](https://es.react.dev/)
+- [Vite](https://vite.dev/)
+- [Vitest](https://vitest.dev/)
 - [React](https://es.react.dev/)
 - [Typescript](https://www.typescriptlang.org/)
 - [Redux Toolkit](https://redux-toolkit.js.org/)
