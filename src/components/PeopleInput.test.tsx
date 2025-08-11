@@ -16,25 +16,23 @@ describe("PeopleInput", () => {
     ["asdads23asdasd.12123asdasd", "2312123"],
     ["!$%&*", ""],
     ["12!3@.4#5$", "12345"],
-  ])(
-    'typing "%s" in the people input results in "%s"',
-    async (input, expected) => {
-      const store = configureStore({
-        reducer: { calculator: calculatorReducer },
-      });
+  ])('typing "%s" results in "%s"', async (input, expected) => {
+    const store = configureStore({
+      reducer: { calculator: calculatorReducer },
+    });
 
-      const user = userEvent.setup();
-      render(
-        <Provider store={store}>
-          <PeopleInput />
-        </Provider>,
-      );
-      const peopleInput = screen.getByLabelText("Number of People");
+    const user = userEvent.setup();
+    render(
+      <Provider store={store}>
+        <PeopleInput />
+      </Provider>,
+    );
+    const peopleInput = screen.getByLabelText("Number of People");
 
-      await user.type(peopleInput, input);
-      expect(peopleInput).toHaveValue(expected);
-    },
-  );
+    await user.type(peopleInput, input);
+    expect(peopleInput).toHaveValue(expected);
+    expect(store.getState().calculator.people).toBe(expected);
+  });
 
   it("should show and hide error for zero people", async () => {
     const store = configureStore({

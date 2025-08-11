@@ -16,23 +16,21 @@ describe("BillInput", () => {
     ["asdads23asdasd.12123asdasd", "23.12123"],
     ["!$%&*", ""],
     ["12!3@.4#5$", "123.45"],
-  ])(
-    'typing "%s" in the bill input results in "%s"',
-    async (input, expected) => {
-      const store = configureStore({
-        reducer: { calculator: calculatorReducer },
-      });
+  ])('typing "%s" results in "%s"', async (input, expected) => {
+    const store = configureStore({
+      reducer: { calculator: calculatorReducer },
+    });
 
-      const user = userEvent.setup();
-      render(
-        <Provider store={store}>
-          <BillInput />
-        </Provider>,
-      );
-      const billInput = screen.getByLabelText("Bill");
+    const user = userEvent.setup();
+    render(
+      <Provider store={store}>
+        <BillInput />
+      </Provider>,
+    );
+    const billInput = screen.getByLabelText("Bill");
 
-      await user.type(billInput, input);
-      expect(billInput).toHaveValue(expected);
-    },
-  );
+    await user.type(billInput, input);
+    expect(billInput).toHaveValue(expected);
+    expect(store.getState().calculator.bill).toBe(expected);
+  });
 });

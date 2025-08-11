@@ -33,6 +33,8 @@ describe("CustomPercent", () => {
 
       await user.type(customTipInput, input);
       expect(customTipInput).toHaveValue(expected);
+      expect(store.getState().calculator.tip.custom).toBe(expected);
+      expect(store.getState().calculator.tip.current).toBe(expected);
     },
   );
 });
