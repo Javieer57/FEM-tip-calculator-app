@@ -20,7 +20,7 @@ export const Resume = () => {
               </span>
             </td>
             <td className="text-right text-3xl font-bold break-all text-cyan-400 sm:text-5xl">
-              ${tipAmount.toFixed(2)}
+              ${tipAmount?.toFixed(2)}
             </td>
           </tr>
 
@@ -33,7 +33,7 @@ export const Resume = () => {
               </span>
             </td>
             <td className="text-right text-3xl font-bold break-all text-cyan-400 sm:text-5xl">
-              ${totalPerPerson.toFixed(2)}
+              ${totalPerPerson?.toFixed(2)}
             </td>
           </tr>
         </tbody>
