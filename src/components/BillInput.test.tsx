@@ -1,9 +1,7 @@
 import userEvent from "@testing-library/user-event";
-import { render, screen } from "@testing-library/react";
+import { screen } from "@testing-library/react";
 import { BillInput } from "./BillInput";
-import { Provider } from "react-redux";
-import { configureStore } from "@reduxjs/toolkit";
-import calculatorReducer from "../store/features/calculatorSlice";
+import { renderWithStore } from "../test-utils/renderWithStore";
 
 describe("BillInput", () => {
   it.each([
@@ -17,16 +15,9 @@ describe("BillInput", () => {
     ["!$%&*", ""],
     ["12!3@.4#5$", "123.45"],
   ])('typing "%s" results in "%s"', async (input, expected) => {
-    const store = configureStore({
-      reducer: { calculator: calculatorReducer },
-    });
+    const { store } = renderWithStore(<BillInput />);
 
     const user = userEvent.setup();
-    render(
-      <Provider store={store}>
-        <BillInput />
-      </Provider>,
-    );
     const billInput = screen.getByLabelText("Bill");
 
     await user.type(billInput, input);
