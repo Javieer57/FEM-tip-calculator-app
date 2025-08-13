@@ -1,23 +1,11 @@
 import userEvent from "@testing-library/user-event";
-import { render, screen, within } from "@testing-library/react";
-import { Provider } from "react-redux";
-import { configureStore } from "@reduxjs/toolkit";
-import calculatorReducer, {
-  CalculatorState,
-} from "../store/features/calculatorSlice";
+import { screen, within } from "@testing-library/react";
 import { Resume } from "./Resume";
+import { renderWithStore } from "../test-utils/renderWithStore";
 
 describe("Resume", () => {
   it("should render 'reset' button as disabled by default", async () => {
-    const store = configureStore({
-      reducer: { calculator: calculatorReducer },
-    });
-
-    render(
-      <Provider store={store}>
-        <Resume />
-      </Provider>,
-    );
+    renderWithStore(<Resume />);
 
     const button = screen.getByRole("button", { name: "Reset" });
 
@@ -25,20 +13,11 @@ describe("Resume", () => {
   });
 
   it("should render 'reset' button as abled if total is not zero", async () => {
-    const store = configureStore({
-      reducer: { calculator: calculatorReducer },
-      preloadedState: {
-        calculator: {
-          totalPerPerson: 100,
-        } as CalculatorState,
+    renderWithStore(<Resume />, {
+      calculator: {
+        totalPerPerson: 100,
       },
     });
-
-    render(
-      <Provider store={store}>
-        <Resume />
-      </Provider>,
-    );
 
     const button = screen.getByRole("button", { name: "Reset" });
 
@@ -46,26 +25,18 @@ describe("Resume", () => {
   });
 
   it("should reset tip and total to zero and disable the button when clicked", async () => {
-    const store = configureStore({
-      reducer: { calculator: calculatorReducer },
-      preloadedState: {
-        calculator: {
-          totalPerPerson: 100,
-          tipAmount: 10,
-        } as CalculatorState,
+    const { store } = renderWithStore(<Resume />, {
+      calculator: {
+        tipAmount: 10,
+        totalPerPerson: 100,
       },
     });
+
     const user = userEvent.setup();
 
-    render(
-      <Provider store={store}>
-        <Resume />
-      </Provider>,
-    );
-
-    const button = screen.getByRole("button", { name: "Reset" });
     const tipRow = screen.getByText("Tip Amount").closest("tr")!;
     const totalRow = screen.getByText("Total").closest("tr")!;
+    const button = screen.getByRole("button", { name: "Reset" });
 
     expect(within(tipRow).getByText("$10.00")).toBeInTheDocument();
     expect(within(totalRow).getByText("$100.00")).toBeInTheDocument();
