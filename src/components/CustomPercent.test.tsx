@@ -1,9 +1,7 @@
 import userEvent from "@testing-library/user-event";
-import { render, screen } from "@testing-library/react";
-import { Provider } from "react-redux";
-import { configureStore } from "@reduxjs/toolkit";
-import calculatorReducer from "../store/features/calculatorSlice";
+import { screen } from "@testing-library/react";
 import { CustomPercent } from "./CustomPercent";
+import { renderWithStore } from "../test-utils/renderWithStore";
 
 describe("CustomPercent", () => {
   it.each([
@@ -19,16 +17,9 @@ describe("CustomPercent", () => {
   ])(
     'typing "%s" in the custom tip percent input results in "%s"',
     async (input, expected) => {
-      const store = configureStore({
-        reducer: { calculator: calculatorReducer },
-      });
-
+      const { store } = renderWithStore(<CustomPercent />);
       const user = userEvent.setup();
-      render(
-        <Provider store={store}>
-          <CustomPercent />
-        </Provider>,
-      );
+
       const customTipInput = screen.getByPlaceholderText("Custom");
 
       await user.type(customTipInput, input);
