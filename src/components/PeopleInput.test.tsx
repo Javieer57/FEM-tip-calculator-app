@@ -1,9 +1,7 @@
 import userEvent from "@testing-library/user-event";
-import { render, screen } from "@testing-library/react";
-import { Provider } from "react-redux";
-import { configureStore } from "@reduxjs/toolkit";
-import calculatorReducer from "../store/features/calculatorSlice";
+import { screen } from "@testing-library/react";
 import { PeopleInput } from "./PeopleInput";
+import { renderWithStore } from "../test-utils/renderWithStore";
 
 describe("PeopleInput", () => {
   it.each([
@@ -17,16 +15,9 @@ describe("PeopleInput", () => {
     ["!$%&*", ""],
     ["12!3@.4#5$", "12345"],
   ])('typing "%s" results in "%s"', async (input, expected) => {
-    const store = configureStore({
-      reducer: { calculator: calculatorReducer },
-    });
+    const { store } = renderWithStore(<PeopleInput />);
 
     const user = userEvent.setup();
-    render(
-      <Provider store={store}>
-        <PeopleInput />
-      </Provider>,
-    );
     const peopleInput = screen.getByLabelText("Number of People");
 
     await user.type(peopleInput, input);
@@ -35,15 +26,8 @@ describe("PeopleInput", () => {
   });
 
   it("should show and hide error for zero people", async () => {
-    const store = configureStore({
-      reducer: { calculator: calculatorReducer },
-    });
+    renderWithStore(<PeopleInput />);
     const user = userEvent.setup();
-    render(
-      <Provider store={store}>
-        <PeopleInput />
-      </Provider>,
-    );
 
     const peopleInput = screen.getByLabelText("Number of People");
 
