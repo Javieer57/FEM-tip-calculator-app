@@ -1,23 +1,12 @@
 import userEvent from "@testing-library/user-event";
-import { render, screen } from "@testing-library/react";
-import { Provider } from "react-redux";
-import { configureStore } from "@reduxjs/toolkit";
-import calculatorReducer, {
-  setPredefinedPercent,
-} from "../store/features/calculatorSlice";
+import { screen } from "@testing-library/react";
 import { PercentButton } from "./PercentButton";
+import { renderWithStore } from "../test-utils/renderWithStore";
 
 describe("PercentButton", () => {
   it("should select radio button on click", async () => {
-    const store = configureStore({
-      reducer: { calculator: calculatorReducer },
-    });
+    const { store } = renderWithStore(<PercentButton percent={15} />);
     const user = userEvent.setup();
-    render(
-      <Provider store={store}>
-        <PercentButton percent={15} />
-      </Provider>,
-    );
 
     const button = screen.getByLabelText("15%");
 
@@ -28,33 +17,27 @@ describe("PercentButton", () => {
   });
 
   it("should not be checked if selectedPercent is different", () => {
-    const store = configureStore({
-      reducer: { calculator: calculatorReducer },
+    renderWithStore(<PercentButton percent={15} />, {
+      calculator: {
+        tip: {
+          current: "20",
+          selected: "20",
+        },
+      },
     });
-
-    store.dispatch(setPredefinedPercent("20"));
-
-    render(
-      <Provider store={store}>
-        <PercentButton percent={15} />
-      </Provider>,
-    );
 
     expect(screen.getByLabelText("15%")).not.toBeChecked();
   });
 
   it("should uncheck other buttons when a new one is selected", async () => {
-    const store = configureStore({
-      reducer: { calculator: calculatorReducer },
-    });
-    const user = userEvent.setup();
-
-    render(
-      <Provider store={store}>
+    renderWithStore(
+      <>
         <PercentButton percent={10} />
         <PercentButton percent={15} />
-      </Provider>,
+      </>,
     );
+
+    const user = userEvent.setup();
 
     const btn10 = screen.getByLabelText("10%");
     const btn15 = screen.getByLabelText("15%");
