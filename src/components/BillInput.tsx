@@ -11,7 +11,7 @@ export const BillInput = () => {
     if (!e.target.validity.valid) return;
     const value = e.target.value;
 
-    dispatch(setBillAction(value === "" ? "" : removeLeadingZeros(value)));
+    dispatch(setBillAction(removeLeadingZeros(value)));
   };
 
   return (
