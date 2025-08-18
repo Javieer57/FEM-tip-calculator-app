@@ -10,7 +10,7 @@ export const CustomPercent = () => {
     if (!e.target.validity.valid) return;
     const value = e.target.value;
 
-    dispatch(setCustomPercent(value === "" ? "" : removeLeadingZeros(value)));
+    dispatch(setCustomPercent(removeLeadingZeros(value)));
   };
 
   return (

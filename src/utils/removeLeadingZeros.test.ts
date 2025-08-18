@@ -2,6 +2,7 @@ import { removeLeadingZeros } from "./removeLeadingZeros";
 
 describe("removeLeadingZeros", () => {
   it.each([
+    ["", ""], // empty
     ["000000", "0"], // only zeros
     ["0000001", "1"], // integer with leading zeros
     ["000123456", "123456"], // large number with leading zeros

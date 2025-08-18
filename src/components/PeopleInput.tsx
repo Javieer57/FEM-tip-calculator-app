@@ -11,7 +11,7 @@ export const PeopleInput = () => {
     if (!e.target.validity.valid) return;
     const value = e.target.value;
 
-    dispatch(setPeople(value === "" ? "" : removeLeadingZeros(value)));
+    dispatch(setPeople(removeLeadingZeros(value)));
   };
 
   return (
