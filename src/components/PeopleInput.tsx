@@ -1,21 +1,24 @@
 import IconPerson from "../assets/icon-person.svg";
+import { useAppDispatch, useAppSelector } from "../store/hooks";
+import { setPeople } from "../store/features/calculatorSlice";
+import { removeLeadingZeros } from "../utils/removeLeadingZeros";
 
-interface PeopleInputProps {
-  people: string;
-  setPeople: (value: string) => void;
-}
+export const PeopleInput = () => {
+  const dispatch = useAppDispatch();
+  const people = useAppSelector((state) => state.calculator.people);
 
-export const PeopleInput = ({ people, setPeople }: PeopleInputProps) => {
   const handlePeopleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (!e.target.validity.valid) return;
-    setPeople(e.target.value);
+    const value = e.target.value;
+
+    dispatch(setPeople(removeLeadingZeros(value)));
   };
 
   return (
-    <div>
+    <div className="space-y-2">
       <label
-        className="mb-2 flex justify-between gap-2 font-bold text-dark-cyan-700"
-        htmlFor="bill"
+        className="text-dark-cyan-700 flex flex-col justify-between gap-2 font-bold sm:flex-row"
+        htmlFor="people"
       >
         Number of People
         <span className="text-orange" aria-live="polite">
@@ -25,7 +28,7 @@ export const PeopleInput = ({ people, setPeople }: PeopleInputProps) => {
 
       <div className="relative">
         <img
-          className="absolute left-4 top-1/2 h-4 w-3.25 -translate-y-1/2"
+          className="pointer-events-none absolute top-1/2 left-4 h-4 w-3.25 -translate-y-1/2 select-none"
           src={IconPerson}
           alt=""
           width={13}
@@ -37,7 +40,7 @@ export const PeopleInput = ({ people, setPeople }: PeopleInputProps) => {
           pattern="[0-9]*"
           name="people"
           id="people"
-          className={`inline-block w-full rounded-sm border-2 bg-dark-cyan-200 p-2 px-4 pb-3 pl-10 text-right text-2xl font-bold text-dark-cyan-900 outline-hidden placeholder:text-dark-cyan-300 ${people === "0" ? "border-orange" : "border-transparent focus:border-cyan-400"}`}
+          className={`bg-dark-cyan-200 text-dark-cyan-900 placeholder:text-dark-cyan-300 inline-block w-full rounded-sm border-2 p-2 px-4 pb-3 pl-10 text-right text-2xl font-bold outline-hidden ${people === "0" ? "border-orange" : "border-transparent focus:border-cyan-400"}`}
           placeholder="0"
           value={people}
           onChange={handlePeopleChange}
